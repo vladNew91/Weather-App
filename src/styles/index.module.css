@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+}
+
+:root {
+    --text-color: white;
+    --container-bg: #282c34;
+    --btn-bg: #49a997;
+    --btn-edit-bg: #ab8326;
+    --btn-del-bg: #b14242;
+}
+
+.container {
+    background-color: var(--container-bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    font-weight: bold;
+    text-align: center;
+}
+
+.btnCreate,
+.btnGo {
+    background-color: var(--btn-bg);
+    font-weight: bold;
+}
+
+button,
+.container {
+    color: var(--text-color);
+}
+
+button,
+input {
+    cursor: pointer;
+}
+
+input,
+.btnCreate,
+.btnGo {
+    padding: 5px;
+}
+
+.content,
+.btnGo {
+    margin-top: 50px;
+}
+
+.btnGo {
+    padding: 10px;
+}
+
+.listItem {
+    display: flex;
+}
+
+.btnEdit {
+    background: var(--btn-edit-bg);
+    margin-left: 10px;
+}
+
+.btnDel {
+    background: var(--btn-del-bg);
+}
