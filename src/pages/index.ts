@@ -1,2 +1,2 @@
 export * from './HomePage';
-export * from './TodosListPage';
+export * from './WeatherHoursPage';

@@ -6,10 +6,10 @@ export interface LayoutComponentProps {
 
 export const LayoutComponent: React.FC<LayoutComponentProps> = ({ children }: LayoutComponentProps): JSX.Element => {
     return (
-        <div className={styles.container}>
-            <h2>Todo list</h2>
+        <section className={styles.container}>
+            <h2>Weather App</h2>
 
             {children}
-        </div>
+        </section>
     );
 };

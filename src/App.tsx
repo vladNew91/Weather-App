@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { LayoutComponent } from "./components";
 import { store } from "./modules";
-import { HomePage, TodosListPage } from "./pages";
+import { HomePage, WeatherHoursPage } from "./pages";
 
 export const App: React.FC = (): JSX.Element => {
     return (
@@ -11,7 +11,7 @@ export const App: React.FC = (): JSX.Element => {
             <LayoutComponent>
                 <Router>
                     <Route path='/' exact component={HomePage} />
-                    <Route path='/list' component={TodosListPage} />
+                    <Route path='/in/' strict component={WeatherHoursPage} />
                 </Router>
             </LayoutComponent>
         </Provider>

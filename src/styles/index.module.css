@@ -5,9 +5,8 @@
 :root {
     --text-color: white;
     --container-bg: #282c34;
-    --btn-bg: #49a997;
+    --btn-bg: #53a9a9;
     --btn-edit-bg: #ab8326;
-    --btn-del-bg: #b14242;
 }
 
 .container {
@@ -22,10 +21,15 @@
     text-align: center;
 }
 
-.btnCreate,
-.btnGo {
+.btn {
     background-color: var(--btn-bg);
     font-weight: bold;
+    margin-right: 3px;
+}
+
+.btn,
+.btnGo {
+    padding: 10px;
 }
 
 button,
@@ -38,30 +42,36 @@ input {
     cursor: pointer;
 }
 
-input,
-.btnCreate,
-.btnGo {
-    padding: 5px;
-}
-
-.content,
-.btnGo {
+.content {
     margin-top: 50px;
-}
-
-.btnGo {
-    padding: 10px;
 }
 
 .listItem {
     display: flex;
 }
 
-.btnEdit {
+.btnGo {
     background: var(--btn-edit-bg);
-    margin-left: 10px;
 }
 
-.btnDel {
-    background: var(--btn-del-bg);
+.cityName,
+.loading {
+    color: var(--text-color);
+    text-align: center;
+}
+
+.cityName {
+    margin: 10% 0 5%;
+    font-size: larger;
+}
+
+.card {
+    color: var(--text-color);
+    text-align: center;
+    font-size: x-large;
+    padding: 3%;
+    background: var(--btn-bg);
+    margin: 0 5px;
+    width: 150px;
+    box-sizing: border-box;
 }

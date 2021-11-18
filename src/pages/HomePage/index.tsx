@@ -1,4 +1,4 @@
 import React from "react";
-import { TodosAddContainer } from "../../containers";
+import { HomePageContainer } from "../../containers";
 
-export const HomePage: React.FC = (): JSX.Element => <TodosAddContainer />;
+export const HomePage: React.FC = (): JSX.Element => <HomePageContainer />;
