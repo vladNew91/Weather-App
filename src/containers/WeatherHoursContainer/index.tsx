@@ -1,14 +1,22 @@
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { WeatherHoursComponent } from "../../components";
-import { selectWeatherData, weatherListRequest } from "../../modules";
+import { weatherRequest } from "../../modules/actions";
+import { selectWeather } from "../../modules/selectors";
 
 export const WeatherHoursContainer = () => {
-    const days = useSelector(selectWeatherData);
+    const weatherhours = useSelector(selectWeather);
 
     const dispatch = useDispatch();
 
-    const callDays = () => {
-        dispatch(weatherListRequest());
+    const setCity = (city: string) => {
+        localStorage.setItem("city", city);
+        dispatch(weatherRequest());
     };
-    return <WeatherHoursComponent callDays={callDays} />;
+
+    React.useEffect(() => {
+        dispatch(weatherRequest());
+    }, [dispatch]);
+
+    return <WeatherHoursComponent weather={weatherhours} setCity={setCity} />;
 };

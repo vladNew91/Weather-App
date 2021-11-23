@@ -1,69 +1,58 @@
 import React from "react";
 import { useHistory } from "react-router";
 import styles from "../../styles/index.module.css";
-import { DayInfo } from "../../types";
-import { WeatherCard } from "..";
-import { API_KEY, days, PATH } from "../../constants";
+import { days } from "../../constants";
+import { WeatherDaysCardComponent } from "../WeatherDaysCardComponent";
+import { WeatherDay } from "../../types";
 
 interface HomePageComponentProps {
-    // onSubmit: (todo: Todo) => void;
+    city: string | null;
+    weatherDays?: WeatherDay[];
+    setCity: (city: string) => void;
 }
 
-export const HomePageComponent: React.FC<HomePageComponentProps> = (props: HomePageComponentProps): JSX.Element => {
-    const history = useHistory();
-    const goTo = (location: string) => history.push(`${location}${city}`);
+export const HomePageComponent: React.FC<HomePageComponentProps> = React.memo(
+    (props: HomePageComponentProps): JSX.Element => {
+        const history = useHistory();
+        const goTo = (location: string) => history.push(`${location}${props.city}`);
 
-    const [city, setCity] = React.useState<string>("Minsk");
-    const [weather, setWeather] = React.useState<DayInfo[]>();
+        return (
+            <div className={styles.content}>
+                <nav>
+                    <button className={styles.btn} onClick={() => props.setCity("Minsk")}>
+                        Minsk
+                    </button>
 
-    React.useEffect(() => {
-        fetch(`${PATH}${API_KEY}&q=${city}&days=10`)
-            .then((res) => res.json())
-            .then((json) => {
-                setWeather(
-                    json.forecast.forecastday.map((el: DayInfo) => {
-                        return {
-                            city: json.location.name,
-                            temp: el.day.maxtemp_c,
-                            icon: el.day.condition.icon,
-                            date: el.date,
-                        };
-                    })
-                );
-            });
-    }, [city]);
+                    <button className={styles.btn} onClick={() => props.setCity("Moscow")}>
+                        Moscow
+                    </button>
 
-    return (
-        <div className={styles.content}>
-            <nav>
-                <button className={styles.btn} onClick={() => setCity("Minsk")}>
-                    Minsk
-                </button>
+                    <button className={styles.btn} onClick={() => props.setCity("Bratislava")}>
+                        Bratislava
+                    </button>
 
-                <button className={styles.btn} onClick={() => setCity("Moscow")}>
-                    Moscow
-                </button>
+                    <button className={styles.btnGo} onClick={() => goTo("/in/")}>
+                        Weather by hours
+                    </button>
+                </nav>
 
-                <button className={styles.btn} onClick={() => setCity("Bratislava")}>
-                    Bratislava
-                </button>
+                <div className={styles.cityName}>{props.city}</div>
 
-                <button className={styles.btnGo} onClick={() => goTo("/in/")}>
-                    Weather by hours
-                </button>
-            </nav>
-
-            <div className={styles.cityName}>{city}</div>
-
-            <div style={{ display: "flex" }}>
-                {weather ? (
-                    weather.map((el: DayInfo, i: number) => (
-                        <WeatherCard key={i} temp={el.temp} icon={el.icon} date={days[i]} />
-                    ))
-                ) : (
-                    <div style={{ color: "white", textAlign: "center", width: "100%" }}>Loading...</div>
-                )}
+                <div className={styles.contentItem}>
+                    {props.weatherDays ? (
+                        props.weatherDays.map((el: WeatherDay, i: number) => (
+                            <WeatherDaysCardComponent
+                                key={i}
+                                temp={el.day.maxtemp_c}
+                                icon={el.day.condition.icon}
+                                date={days[i]}
+                            />
+                        ))
+                    ) : (
+                        <div className={styles.loading}>Loading...</div>
+                    )}
+                </div>
             </div>
-        </div>
-    );
-};
+        );
+    }
+);

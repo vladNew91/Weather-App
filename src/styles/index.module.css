@@ -7,6 +7,8 @@
     --container-bg: #282c34;
     --btn-bg: #53a9a9;
     --btn-edit-bg: #ab8326;
+    --temp-color: #d2eeff;
+    --time-color: #f4ff9d;
 }
 
 .container {
@@ -42,12 +44,16 @@ input {
     cursor: pointer;
 }
 
-.content {
-    margin-top: 50px;
+input {
+    font-size: larger;
+    padding: 6px;
+    font-size: large;
+    width: 150px;
 }
 
-.listItem {
-    display: flex;
+.content {
+    margin-top: 50px;
+    max-width: 90%;
 }
 
 .btnGo {
@@ -72,6 +78,43 @@ input {
     padding: 3%;
     background: var(--btn-bg);
     margin: 0 5px;
-    width: 150px;
+    width: 175px;
     box-sizing: border-box;
+}
+
+.cardsContent {
+    margin: 20px 0;
+}
+
+.hoursCard {
+    background: var(--btn-bg);
+    box-sizing: border-box;
+    padding: 0 5px 5px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+}
+
+.hoursCardItems {
+    font-size: 15px;
+    margin: 0 5px;
+}
+
+.contentItem {
+    display: flex;
+    justify-content: center;
+}
+
+.hoursCardItem {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.hourTemp {
+    color: var(--temp-color);
+}
+
+.hourTime {
+    color: var(--time-color);
 }

@@ -1,10 +1,18 @@
-export interface DayInfo {
-    city: string,
-    temp: number,
-    date: string,
+export interface WeatherHour {
+    time: string;
+    temp_c: number;
+}
+
+export interface WeatherDay {
     day: {
         maxtemp_c: number,
-        condition: {icon: string},
-    },
-    icon: string,
+        condition: { icon: string }
+    };
+    hour: WeatherHour[];
+}
+
+export interface Weather {
+    forecast: {
+        forecastday: WeatherDay[]
+    };
 }

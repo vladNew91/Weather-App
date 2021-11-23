@@ -1,59 +1,54 @@
 import React from "react";
 import { useHistory } from "react-router";
-import { API_KEY, PATH } from "../../constants";
+import { WeatherHoursCardComponent } from "..";
+import { days } from "../../constants";
 import styles from "../../styles/index.module.css";
-import { DayInfo } from "../../types";
+import { WeatherDay } from "../../types";
 
 interface WeatherHoursComponentProps {
-    callDays: () => void;
+    weather?: WeatherDay[];
+    setCity: (city: string) => void;
 }
 
-export const WeatherHoursComponent: React.FC<WeatherHoursComponentProps> = ({
-    callDays,
-}: WeatherHoursComponentProps): JSX.Element => {
+export const WeatherHoursComponent: React.FC<WeatherHoursComponentProps> = (
+    props: WeatherHoursComponentProps
+): JSX.Element => {
     const history = useHistory<string>();
     const goTo = (location: string) => history.push(location);
+
     const path: string = history.location.pathname;
+    const cityInPath = path.substring(4, path.length);
 
-    const [weather, setWeather] = React.useState<DayInfo>();
+    const [cityName, setCityName] = React.useState<string>(cityInPath);
+    const [city, setCity] = React.useState<string>(cityInPath);
 
-    const cityNAme: string = path.substring(4, path.length);
-
-    React.useEffect(() => {
-        fetch(`${PATH}${API_KEY}&q=${cityNAme}&days=10`)
-            .then((res) => res.json())
-            .then((json) => {
-                setWeather(
-                    json.forecast.forecastday.map((el: DayInfo) => {
-                        return {
-                            date: el.date,
-                        };
-                    })
-                );
-            });
-    }, [cityNAme]);
+    const changeCity = () => {
+        props.setCity(city);
+        setCityName(city);
+    };
 
     return (
         <div className={styles.content}>
-            <div>Weather by hours in {cityNAme}</div>
+            <div>Weather by hours in {cityName}</div>
 
-            {!weather ? (
-                <div>Loading...</div>
-            ) : (
-                <div>
-                    <div>
-                        <div>{weather.date}</div>
-                        <div></div>
-                    </div>
-                    <div></div>
-                    <div></div>
-                </div>
-            )}
+            <div className={styles.cardsContent}>
+                <input
+                    type='text'
+                    value={city}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCity(e.target.value)}
+                />
+                <button className={styles.btn} onClick={changeCity}>
+                    Change city
+                </button>
+            </div>
 
-            <button onClick={callDays}>Store</button>
+            <div className={styles.cardsContent}>
+                {props.weather &&
+                    props.weather.map((el, i) => <WeatherHoursCardComponent key={i} day={days[i]} hours={el.hour} />)}
+            </div>
 
             <button className={styles.btnGo} onClick={() => goTo("/")}>
-                Weather by hours
+                Go to home page
             </button>
         </div>
     );
