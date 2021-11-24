@@ -38,7 +38,7 @@ Builds the app for production to the `build` folder.
 
 ## Learn More
 
-[React documentation](https://reactjs.org/).\
-[React-Redux documentation](https://react-redux.js.org/).\
-[React-Saga documentation](https://redux-saga.js.org/).\
-[TypeScript documentation](https://www.typescriptlang.org/docs/).
+[React documentation](https://reactjs.org/)\
+[React-Redux documentation](https://react-redux.js.org/)\
+[React-Saga documentation](https://redux-saga.js.org/)\
+[TypeScript documentation](https://www.typescriptlang.org/docs/)

@@ -7,7 +7,7 @@ import { WeatherFailure, weatherFailure, WeatherRequest, WeatherSuccess, weather
 interface Response<T> { data: T }
 
 function requestWeather() {
-    return axios(`${PATH}${API_KEY}&q=${localStorage.getItem("city")}&days=10`);
+    return axios(`${PATH}${API_KEY}&q=${localStorage.getItem("city") || "Minsk"}&days=10`);
 };
 
 export default function* WeatherRequestSaga(action: WeatherRequest):

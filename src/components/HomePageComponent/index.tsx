@@ -6,7 +6,7 @@ import { WeatherDaysCardComponent } from "../WeatherDaysCardComponent";
 import { WeatherDay } from "../../types";
 
 interface HomePageComponentProps {
-    city: string | null;
+    city: string;
     weatherDays?: WeatherDay[];
     setCity: (city: string) => void;
 }

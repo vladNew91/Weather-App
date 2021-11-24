@@ -6,7 +6,7 @@ import { selectWeather } from "../../modules/selectors";
 
 export const HomePageContainer: React.FC = (): JSX.Element => {
     const weatherDays = useSelector(selectWeather);
-    const city = localStorage.getItem("city");
+    const city = localStorage.getItem("city") || "Minsk";
 
     const dispatch = useDispatch();
 
