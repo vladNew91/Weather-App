@@ -52,7 +52,7 @@ input {
 }
 
 .content {
-    margin-top: 50px;
+    margin: 50px auto 0;
     max-width: 90%;
 }
 

@@ -1,11 +1,11 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { WeatherHoursComponent } from "../../components";
+import { WeatherContentComponent } from "../../components";
 import { weatherRequest } from "../../modules/actions";
 import { selectWeather } from "../../modules/selectors";
 
-export const WeatherHoursContainer = () => {
-    const weatherhours = useSelector(selectWeather);
+export const WeatherContentContainer: React.FC = (): JSX.Element => {
+    const weather = useSelector(selectWeather);
 
     const dispatch = useDispatch();
 
@@ -14,9 +14,5 @@ export const WeatherHoursContainer = () => {
         dispatch(weatherRequest());
     };
 
-    React.useEffect(() => {
-        dispatch(weatherRequest());
-    }, [dispatch]);
-
-    return <WeatherHoursComponent weather={weatherhours} setCity={setCity} />;
+    return <WeatherContentComponent weather={weather} setCity={setCity} />;
 };

@@ -12,7 +12,6 @@ export interface WeatherDay {
 }
 
 export interface Weather {
-    forecast: {
-        forecastday: WeatherDay[]
-    };
+    location: { name: string };
+    forecast: { forecastday: WeatherDay[] };
 }

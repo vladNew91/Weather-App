@@ -7,11 +7,13 @@ interface WeatherHoursCardComponentProps {
     hours: WeatherHour[];
 }
 
+const secondPart = 1;
+const splitElement = " ";
+const splitTime = (time: string) => time.split(splitElement)[secondPart];
+
 export const WeatherHoursCardComponent: React.FC<WeatherHoursCardComponentProps> = (
     props: WeatherHoursCardComponentProps
 ): JSX.Element => {
-    const splitTime = (time: string) => time.split(" ")[1];
-
     return (
         <div className={styles.hoursCard}>
             <span>{props.day}</span>
