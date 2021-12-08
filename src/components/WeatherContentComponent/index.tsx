@@ -7,7 +7,6 @@ import { Weather } from "../../types";
 
 interface WeatherContentComponentProps {
     weather?: Weather;
-    setCity: (city: string) => void;
 }
 
 export const WeatherContentComponent: React.FC<WeatherContentComponentProps> = React.memo((
